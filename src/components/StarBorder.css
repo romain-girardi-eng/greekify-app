@@ -1,0 +1,129 @@
+.star-border-container {
+  display: inline-block;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.border-gradient-bottom {
+  position: absolute;
+  width: 300%;
+  height: 50%;
+  opacity: 0.7;
+  bottom: -12px;
+  right: -250%;
+  border-radius: 50%;
+  animation: star-movement-bottom linear infinite alternate;
+  z-index: 0;
+}
+
+.border-gradient-top {
+  position: absolute;
+  opacity: 0.7;
+  width: 300%;
+  height: 50%;
+  top: -12px;
+  left: -250%;
+  border-radius: 50%;
+  animation: star-movement-top linear infinite alternate;
+  z-index: 0;
+}
+
+.inner-content {
+  position: relative;
+  border: 1px solid #222;
+  background: #000;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  padding: 16px 26px;
+  border-radius: 20px;
+  z-index: 1;
+}
+
+/* Hero button custom styling */
+.star-border-hero .inner-content {
+  background: linear-gradient(145deg, rgba(40,20,80,0.9) 0%, rgba(20,10,40,0.95) 100%);
+  border: 1px solid rgba(168,85,247,0.3);
+  color: rgba(233,213,255,0.95);
+  font-weight: 500;
+  padding: 12px 32px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.star-border-hero:hover .inner-content {
+  background: linear-gradient(145deg, rgba(55,30,100,0.95) 0%, rgba(30,15,55,0.98) 100%);
+  border-color: rgba(168,85,247,0.5);
+  box-shadow: 0 0 30px rgba(168,85,247,0.3);
+}
+
+/* Light theme hero button */
+[data-theme="light"] .star-border-hero .inner-content {
+  background: linear-gradient(145deg, rgba(245,240,255,0.95) 0%, rgba(235,225,250,0.98) 100%);
+  border: 1px solid rgba(139,92,246,0.3);
+  color: rgba(91,33,182,0.95);
+}
+
+[data-theme="light"] .star-border-hero:hover .inner-content {
+  background: linear-gradient(145deg, rgba(250,245,255,0.98) 0%, rgba(240,230,252,1) 100%);
+  border-color: rgba(139,92,246,0.5);
+  box-shadow: 0 0 30px rgba(139,92,246,0.25);
+}
+
+/* Vocab card button styling */
+.star-border-vocab {
+  width: 100%;
+}
+
+.star-border-vocab .inner-content {
+  background: linear-gradient(145deg, rgba(30,41,59,0.95) 0%, rgba(15,23,42,0.98) 100%);
+  border: 1px solid rgba(96,165,250,0.3);
+  color: rgba(191,219,254,0.95);
+  font-weight: 500;
+  padding: 14px 32px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.star-border-vocab:hover .inner-content {
+  background: linear-gradient(145deg, rgba(40,52,72,0.98) 0%, rgba(22,33,52,1) 100%);
+  border-color: rgba(96,165,250,0.5);
+  box-shadow: 0 0 25px rgba(96,165,250,0.25);
+}
+
+/* Light theme vocab button */
+[data-theme="light"] .star-border-vocab .inner-content {
+  background: linear-gradient(145deg, rgba(248,250,252,0.98) 0%, rgba(241,245,249,0.98) 100%);
+  border: 1px solid rgba(59,130,246,0.3);
+  color: rgba(30,64,175,0.95);
+}
+
+[data-theme="light"] .star-border-vocab:hover .inner-content {
+  background: linear-gradient(145deg, rgba(255,255,255,1) 0%, rgba(248,250,252,1) 100%);
+  border-color: rgba(59,130,246,0.5);
+  box-shadow: 0 0 25px rgba(59,130,246,0.2);
+}
+
+@keyframes star-movement-bottom {
+  0% {
+    transform: translate(0%, 0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-100%, 0%);
+    opacity: 0;
+  }
+}
+
+@keyframes star-movement-top {
+  0% {
+    transform: translate(0%, 0%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100%, 0%);
+    opacity: 0;
+  }
+}
