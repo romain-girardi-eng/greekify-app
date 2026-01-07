@@ -11,9 +11,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
       manifest: {
-        name: 'Koine Greek Learning',
-        short_name: 'Koine',
-        description: 'Learn New Testament Greek with spaced repetition',
+        name: 'Greekify',
+        short_name: 'Greekify',
+        description: 'Apprendre le grec koinè avec la répétition espacée',
         theme_color: '#0f172a',
         background_color: '#0f172a',
         display: 'standalone',
