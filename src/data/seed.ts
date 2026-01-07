@@ -291,12 +291,34 @@ export async function seedDatabase(): Promise<void> {
   const existingVocab = await getAllVocabCards();
   const existingGrammar = await getAllGrammarCards();
 
-  if (existingVocab.length === 0) {
+  // Load vocabulary data to check count
+  const vocabData = await loadVocabularyData();
+
+  // Reseed if no vocab or if vocab file has more cards than database
+  // This ensures updates to vocabulary.json are reflected
+  if (existingVocab.length === 0 || (vocabData.length > 0 && vocabData.length > existingVocab.length)) {
     console.log('Loading vocabulary from MorphGNT frequency data...');
-    const vocabCards = await loadVocabularyData();
-    if (vocabCards.length > 0) {
-      await addVocabCards(vocabCards);
-      console.log(`Added ${vocabCards.length} vocabulary cards (frequency-based from MorphGNT)`);
+    if (vocabData.length > 0) {
+      // Preserve SRS progress for existing cards
+      const existingById = new Map(existingVocab.map(c => [c.id, c]));
+      const mergedCards = vocabData.map(newCard => {
+        const existing = existingById.get(newCard.id);
+        if (existing) {
+          // Keep existing SRS data but update other fields (glosses, etc.)
+          return {
+            ...newCard,
+            due: existing.due,
+            interval: existing.interval,
+            easeFactor: existing.easeFactor,
+            reps: existing.reps,
+            lapses: existing.lapses,
+          };
+        }
+        return newCard;
+      });
+
+      await addVocabCards(mergedCards);
+      console.log(`Updated vocabulary: ${mergedCards.length} cards (was ${existingVocab.length})`);
     } else {
       console.warn('No vocabulary cards loaded - check data/vocabulary.json');
     }
